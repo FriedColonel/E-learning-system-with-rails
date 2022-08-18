@@ -1,0 +1,42 @@
+<% if current_user.admin %>
+  <% if @test %>
+    <h5>Test have been created</h5>
+  <% else %>
+    <div class="card rounded-lg mt-5">
+      <div class="card-header"><h5 class="text-center font-weight-light">Create test</h5></div>
+      <div class="card-body">
+        <%= form_for(@lession.build_test, remote: true) do |f| %>
+          <%= f.hidden_field :lession_id, value: @lession.id %>
+
+          <div class="form-floating mb-3">
+            <%= f.text_field :name, autofocus: true, class: "form-control",
+                                                       placeholder: "Enter the test name" %>
+            <%= f.label :name, class: "form-check-label" %>
+          </div>
+
+          <div class="form-floating mb-3">
+            <%= f.text_field :total_questions, class: "form-control",
+                                        placeholder: "Enter total questions" %>
+            <%= f.label :total_questions, class: "form-check-label" %>
+          </div>
+
+          <div class="form-floating mb-3">
+            <%= f.text_field :time_limit, class: "form-control",
+                                       placeholder: "Enter the time limit" %>
+            <%= f.label :time_limit, class: "form-check-label" %>
+          </div>
+
+          <div class="form-floating mb-3">
+            <%= f.text_field :min_correct_ans, class: "form-control",
+                                       placeholder: "Enter the min correct answers" %>
+            <%= f.label "Min correct answers", class: "form-check-label" %>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+            <%= f.submit "Create test", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

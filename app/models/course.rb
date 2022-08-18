@@ -9,7 +9,7 @@ class Course < ApplicationRecord
     users.include? user
   end
 
-  def add_lession lession
-    lessions << lession
+  def add_lession lesson
+    lessons << lesson
   end
 end

@@ -1,0 +1,13 @@
+<% if @test %>
+  <div class="card mt-5 mb-3" style="width: 100%;">
+    <div class="card-body">
+      <h5 class="card-title"><%= @test.name %></h5>
+      <% if current_user.admin %>
+        <%= link_to "Delete", @test, method: :delete, data: {confirm: "Are you sure?"},
+                                  remote: true, class: "btn btn-danger" %>
+        <%= link_to "Edit test", edit_test_path(@test), class:"btn btn-primary" %>
+      <% end %>
+        <%= link_to "Take test", @test, class:"btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

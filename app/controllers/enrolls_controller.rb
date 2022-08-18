@@ -10,6 +10,7 @@ class EnrollsController < ApplicationController
         respond_to do |format|
           format.html { redirect_to @course }
           format.js
+        end
       end
     else
       flash[:warning] = "Course not found"

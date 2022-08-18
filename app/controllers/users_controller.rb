@@ -36,9 +36,39 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit; end
+
+  def update
+    if @user.update(user_params)
+      flash.now[:success] = "Profile updated successfully!"
+      redirect_to @user
+    else
+      render :edit
+    end
+  end
+
   def courses
     @title = "Enrolled courses"
     @courses = current_user.courses.all
     render :courses
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :username, :email,
+                                        :password, :password_confirmation)
+  end
+
+  def correct_user
+    redirect_to root_url unless (@user && @user == current_user)
+  end
+
+  def load_user
+    @user = User.find_by id: params[:id]
+    return if @user
+
+    flash.now[:danger] = "Not found user!"
+    redirect_to root_path
   end
 end
