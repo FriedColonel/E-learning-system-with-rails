@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-7">
+      <div class="card shadow-lg border-0 rounded-lg mt-5">
+        <div class="card-header"><h2 class="text-center font-weight-light my-4">Edit <%= resource_name.to_s.humanize %></h2></div>
+        <div class="card-body">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <div class="form-floating mb-3 mb-md-0">
+                  <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "Enter your name" %>
+                  <%= f.label :name %>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  <%= f.text_field :username, class: "form-control", placeholder: "Enter your username" %>
+                  <%= f.label :username %>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-floating mb-3">
+              <%= f.email_field :email, class: "form-control", placeholder: "name@example.com" %>
+              <%= f.label :email %>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <div class="form-floating mb-3 mb-md-0">
+                  <%= f.password_field :password, class: "form-control", placeholder: "Create a password" %>
+                  <i>(leave blank if you don't want to change it)</i><br>
+                  <%= f.label :password %>
+                  <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %> characters minimum)</em>
+                  <% end %>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating mb-3 mb-md-0">
+                  <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Confirm password" %>
+                  <%= f.label :password_confirmation %>
+                  <i>(leave blank if you don't want to change it)</i><br>
+                </div>
+              </div>
+            </div>
+            <div class="form-floating mb-3">
+              <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", placeholder: "Current Password" %>
+              <%= f.label :current_password %>
+              <i>(we need your current password to confirm your changes)</i>
+            </div>
+            <div class="mt-4 mb-0">
+              <div class="d-grid"><%= f.submit "Update", class: "btn btn-primary btn-block" %></div>
+            </div>
+            <% end %>
+        </div>
+        <div class="card-footer text-center py-3">
+          <div class="small">
+            <h3>Cancel my account</h3>
+            <p>Unhappy?</p>
+            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+              <%= link_to "Back", :back, class: "btn btn-primary btn-block" %>
+              <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-block" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

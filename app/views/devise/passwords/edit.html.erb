@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-5">
+      <div class="card shadow-lg border-0 rounded-lg mt-5">
+        <div class="card-header"><h3 class="text-center font-weight-light my-4">Change your password</h3></div>
+        <div class="card-body">
+          <div class="small mb-3 text-muted">Enter your new password.</div>
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
+              <%= f.hidden_field :reset_password_token %>
+
+              <div class="form-floating mb-3">
+                <%= f.password_field :password, autofocus: true, autocomplete: "new-password", placeholder: "New password", class: "form-control" %>
+                <%= f.label :password, "New password" %>
+                <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+                <% end %>
+              </div>
+
+              <div class="form-floating mb-3">
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Confirm new password", class: "form-control" %>
+                <%= f.label :password_confirmation, "Confirm new password" %>
+              </div>
+
+              <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                <%= link_to "Log in", new_session_path(resource_name), class: "small" %>
+                <%= f.submit "Change my password", class: "btn btn-primary" %>
+              </div>
+            <% end %>
+          </div>
+        <div class="card-footer text-center py-3">
+          <div class="small"><%= link_to "Need an account? Sign up!", new_registration_path(resource_name) %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

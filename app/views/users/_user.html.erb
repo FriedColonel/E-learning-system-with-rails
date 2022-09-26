@@ -1,0 +1,16 @@
+<tr id="user-<%= user.id %>">
+  <th scope="row"><%= user.id %></th>
+  <td><%= user.name %></td>
+  <td><%= user.username %></td>
+  <td><%= user.email %></td>
+  <td>
+    <% if current_user&.admin? %>
+      <% if (!user.admin? && current_user != user) %>
+        <%= button_to "Delete", user, method: :delete, remote: true, class: "btn btn-danger"%>
+      <% end %>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to "Profile", user, class: "btn btn-primary" %>
+  </td>
+</tr>
