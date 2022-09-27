@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_27_073045) do
+ActiveRecord::Schema.define(version: 2022_09_28_013430) do
 
   create_table "courses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(version: 2022_09_27_073045) do
     t.index ["user_id"], name: "index_enrolls_on_user_id"
   end
 
+  create_table "lessons", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.bigint "course_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_lessons_on_course_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "name", null: false
@@ -47,4 +55,5 @@ ActiveRecord::Schema.define(version: 2022_09_27_073045) do
 
   add_foreign_key "enrolls", "courses"
   add_foreign_key "enrolls", "users"
+  add_foreign_key "lessons", "courses"
 end

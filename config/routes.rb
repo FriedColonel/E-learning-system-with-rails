@@ -14,5 +14,11 @@ Rails.application.routes.draw do
   end
   resources :courses
   resources :enrolls, only: [:create]
+  resources :courses do
+    member do
+      get :lesson
+    end
+  end
+  resources :lessons, only: [:create, :destroy]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

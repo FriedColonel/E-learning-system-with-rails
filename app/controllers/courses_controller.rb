@@ -8,6 +8,7 @@ class CoursesController < ApplicationController
 
   def show
     @course = Course.find_by id: params[:id]
+    @lessons = @course.lessons.all
   end
 
   def create
@@ -17,6 +18,7 @@ class CoursesController < ApplicationController
       flash[:success] = "Create course successfully!"
     else
       flash[:danger] = "Create course fail"
+      render :new
     end
   end
 

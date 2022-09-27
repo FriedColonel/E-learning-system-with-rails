@@ -1,4 +1,5 @@
 <div class="container py-3">
-  <h1>Pages#home</h1>
-  <p>You can find me at app/views/pages/home.html.erb</p>
+  <% if user_signed_in? %>
+    <%= render "shared/profile" %>
+  <% end %>
 </div>

@@ -16,44 +16,24 @@
 <section>
   <p class="fs-3 fw-bold">Lessons list</p>
   <div class="card" style="width: 100%">
-  <div class="card-header">
-    <%= @course.name %>
+    <div class="card-header">
+      <%= @course.name %>
+    </div>
+    <ul id="lessons-list" class="list-group list-group-flush">
+      <%= render @lessons %>
+    </ul>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">
-      <div class="d-flex justify-content-between">
-        <span class="mr-3 fw-bold align-self-center">First lesson
-        </span>
-        <% if user_signed_in? && @course.enrolling?(current_user) %>
-          <%= link_to "Study", "#", class: "btn btn-primary" %>
+  <% if current_user&.admin? %>
+    <div class="card mt-5 mb-3" style="width: 50%">
+      <div class="card-body">
+        <%= form_for(@course.lessons.build, remote: true) do |f| %>
+          <%= render "shared/error_messages", object: f.object %>
+          <%= hidden_field_tag :course_id, @course.id %>
+          <%= f.text_field :name, autofocus: true, class: "form-control",
+                                                    placeholder: "Enter the name of the lesson" %>
+          <%= f.submit "Add lesson", class: "btn btn-primary" %>
         <% end %>
       </div>
-    </li>
-    <li class="list-group-item">
-      <div class="d-flex justify-content-between">
-        <span class="mr-3 fw-bold align-self-center">Second lesson
-        </span>
-        <% if user_signed_in? && @course.enrolling?(current_user) %>
-          <%= link_to "Study", "#", class: "btn btn-primary" %>
-        <% end %>
-      </div>
-    </li>
-    <li class="list-group-item">
-      <div class="d-flex justify-content-between">
-        <span class="mr-3 fw-bold align-self-center">Third lesson</span>
-        <% if user_signed_in? && @course.enrolling?(current_user) %>
-          <%= link_to "Study", "#", class: "btn btn-primary" %>
-        <% end %>
-      </div>
-    </li>
-  </ul>
-  <div class="card mt-5 mb-3" style="width: 100%;">
-  <div class="card-body">
-    <h5 class="card-title">Final test</h5>
-    <% if user_signed_in? && @course.enrolling?(current_user) %>
-      <%= link_to "Take test", "#", class:"btn btn-primary" %>
-    <% end %>
-  </div>
-</div>
-</div>
+    </div>
+  <% end %>
 </section>
