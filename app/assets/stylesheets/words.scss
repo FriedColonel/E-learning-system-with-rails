@@ -24,6 +24,20 @@ ol.reibun li:before {
   display: inline-block;
 }
 
+.delete-example {
+  position: absolute;
+  display: inline-block;
+  right: 0;
+  top: 0;
+}
+
+.update-example {
+  position: absolute;
+  display: inline-block;
+  right: 45px;
+  top: 0;
+}
+
 ol.reibun li:nth-child(odd) {
   background-color: #efefef;
 }

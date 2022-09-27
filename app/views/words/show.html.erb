@@ -1,37 +1,28 @@
 <div class="container">
-  <div class="card shadow-lg border-0 mt-5" style="padding: 1rem;">
+  <div class="card shadow-lg border-0 mt-5 mb-5" style="padding: 1rem;">
     <div class="d-flex justify-content-between">
       <h1 class="text-danger"><%= @word.origin %></h1>
       <% if current_user&.admin? %>
-        <%= link_to "Edit", edit_word_path(@word), style: "text-decoration: none;" %>
+        <%= link_to "Edit", edit_word_path(@word), style: "text-decoration: none; font-size: 20px;" %>
       <% end %>
     </div>
     <h4><%= @word.hiragana %></h4>
     <h2>Meaning (意味):</h2>
     <h3 class="text-primary">◆ <%= @word.meaning %></h3>
-    <h2>Example (例文):</h2>
-    <ol class="reibun">
-      <li>
-        <p class="reibun-ja">例えば。</p>
-        <p class="reibun-hiragana">Some hiragana</p>
-        <p>Some meaning</p>
-      </li>
-      <li>
-        <p class="reibun-ja">例えば。</p>
-        <p class="reibun-hiragana">Some hiragana</p>
-        <p>Some meaning</p>
-      </li>
-      <li>
-        <p class="reibun-ja">例えば。</p>
-        <p class="reibun-hiragana">Some hiragana</p>
-        <p>Some meaning</p>
-      </li>
-      <li>
-        <p class="reibun-ja">例えば。</p>
-        <p class="reibun-hiragana">Some hiragana</p>
-        <p>Some meaning</p>
-      </li>
+    <div class="d-flex justify-content-between">
+      <h2>Examples (例えば):</h2>
+      <% if current_user&.admin? %>
+        <button id="add-example" class="btn btn-primary rounded-circle" style="font-size: 20px">
+          <i class="fa fa-plus"></i>
+        </button>
+      <% end %>
+    </div>
+    <ol id="example-list" class="reibun">
+      <%= render @examples %>
     </ol>
+    <div id="example-form" style="display: none;">
+      <%= render "examples/form", object: @word.examples.build %>
+    </div>
     <article class="word-navigation">
       <% if @index > 0 %>
         <%= link_to "<<< Prev", @words[@index-1], style: "text-decoration: none;" %>
@@ -50,3 +41,17 @@
     </article>
   </div>
 </div>
+
+<script charset="utf-8">
+  $('#add-example').on('click', () => {
+    $('#error_explanation').html('')
+    $('#example-form').show('slide', () => {
+      window.scrollTo(0, document.body.scrollHeight)
+    })
+  })
+  $('#cancel-add').on('click', () => {
+    $('#example-form').hide('slide', () => {
+      window.scrollTo(0, - document.body.scrollHeight)
+    })
+  })
+</script>
