@@ -6,7 +6,7 @@
   <td>
     <% if current_user&.admin? %>
       <% if (!user.admin? && current_user != user) %>
-        <%= button_to "Delete", user, method: :delete, remote: true, class: "btn btn-danger"%>
+        <%= button_to "Delete", user, method: :delete, data: {confirm: "Are you sure to delete this user?"}, remote: true, class: "btn btn-danger"%>
       <% end %>
     <% end %>
   </td>

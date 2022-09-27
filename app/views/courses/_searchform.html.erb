@@ -1,0 +1,12 @@
+<%= search_form_for @q do |f| %>
+  <div class="d-flex">
+    <div class="field mb-3 me-2">
+      <%= f.search_field :name_cont,
+      class:"form-control search-form",
+      placeholder: "Search course..." %>
+    </div>
+    <div class="actions">
+      <%= f.submit class:"btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
