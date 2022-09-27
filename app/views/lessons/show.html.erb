@@ -1,0 +1,51 @@
+<div class="container py-3">
+  <h1><%= @lesson.name %></h1>
+  <div class="card" style="width: 100%">
+    <div class="card-header">
+      <h5 class="text-center">Words list</h5>
+    </div>
+    <ul id="words-list" class="list-group list-group-flush">
+      <%= render @words %>
+    </ul>
+  </div>
+  <% if user_signed_in? && current_user.admin? %>
+    <div class="card rounded-lg mt-5">
+      <div class="card-header"><h5 class="text-center font-weight-light">Add word</h5></div>
+      <div class="card-body">
+        <%= form_for(@lesson.words.build, remote: true) do |f| %>
+          <%# <%= render "shared/error_messages", object: f.object %1> %>
+          <%= f.hidden_field :lesson_id, value: @lesson.id %>
+
+          <div class="form-floating mb-3">
+            <%= f.text_field :origin, autofocus: true, class: "form-control",
+                                                       placeholder: "Enter the word" %>
+            <%= f.label :origin, class: "form-check-label" %>
+          </div>
+
+          <div class="form-floating mb-3">
+            <%= f.text_field :hiragana, class: "form-control",
+                                        placeholder: "Enter hiragana" %>
+            <%= f.label :hiragana, class: "form-check-label" %>
+          </div>
+
+          <div class="form-floating mb-3">
+            <%= f.text_field :meaning, class: "form-control",
+                                       placeholder: "Enter the meaning" %>
+            <%= f.label :meaning, class: "form-check-label" %>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+            <%= f.submit "Add word", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="card mt-5 mb-3" style="width: 100%;">
+    <div class="card-body">
+      <h5 class="card-title">Final lesson test</h5>
+      <%= link_to "Take test", "#", class:"btn btn-primary" %>
+    </div>
+  </div>
+</div>

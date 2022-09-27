@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="card shadow-lg border-0 mt-5" style="padding: 1rem;">
+    <div class="d-flex justify-content-between">
+      <h1 class="text-danger"><%= @word.origin %></h1>
+      <% if current_user&.admin? %>
+        <%= link_to "Edit", edit_word_path(@word), style: "text-decoration: none;" %>
+      <% end %>
+    </div>
+    <h4><%= @word.hiragana %></h4>
+    <h2>Meaning (意味):</h2>
+    <h3 class="text-primary">◆ <%= @word.meaning %></h3>
+    <h2>Example (例文):</h2>
+    <ol class="reibun">
+      <li>
+        <p class="reibun-ja">例えば。</p>
+        <p class="reibun-hiragana">Some hiragana</p>
+        <p>Some meaning</p>
+      </li>
+      <li>
+        <p class="reibun-ja">例えば。</p>
+        <p class="reibun-hiragana">Some hiragana</p>
+        <p>Some meaning</p>
+      </li>
+      <li>
+        <p class="reibun-ja">例えば。</p>
+        <p class="reibun-hiragana">Some hiragana</p>
+        <p>Some meaning</p>
+      </li>
+      <li>
+        <p class="reibun-ja">例えば。</p>
+        <p class="reibun-hiragana">Some hiragana</p>
+        <p>Some meaning</p>
+      </li>
+    </ol>
+    <article class="word-navigation">
+      <% if @index > 0 %>
+        <%= link_to "<<< Prev", @words[@index-1], style: "text-decoration: none;" %>
+      <% else %>
+        <%= link_to "<<< Prev", { controller: :lessons, action: :show, id: @word.lesson_id },
+                                style: "text-decoration: none;" %>
+      <% end %>
+      <%= link_to "Back to lesson", { controller: :lessons, action: :show, id: @word.lesson_id },
+                                    style: "text-decoration: none;" %>
+      <% if @index + 1 < @words.length %>
+        <%= link_to "Next >>>", @words[@index+1], style: "text-decoration: none;" %>
+      <% else %>
+        <%= link_to "Next >>>", { controller: :lessons, action: :show, id: @word.lesson_id },
+                                style: "text-decoration: none;" %>
+      <% end %>
+    </article>
+  </div>
+</div>

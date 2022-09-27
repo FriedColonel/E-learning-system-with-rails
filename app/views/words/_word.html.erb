@@ -1,0 +1,13 @@
+<li id="word-<%= word.id %>" class="list-group-item">
+  <div class="d-flex justify-content-between">
+    <span class="mr-3 fw-bold align-self-center">
+      <%= link_to word.origin, word %>
+    </span>
+    <% if current_user.admin? %>
+      <%= link_to "Delete", word, method: :delete, data: {confirm: "Are you sure?"},
+                                  remote: true, class: "btn btn-danger" %>
+    <% else %>
+      <%= link_to "Study", word, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</li>

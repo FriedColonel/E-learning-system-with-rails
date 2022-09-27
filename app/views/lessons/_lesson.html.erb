@@ -1,6 +1,7 @@
 <li id="lesson-<%= lesson.id %>" class="list-group-item">
   <div class="d-flex justify-content-between">
-    <span class="mr-3 fw-bold align-self-center"><%= lesson.name %>
+    <span class="mr-3 fw-bold align-self-center">
+      <%= link_to lesson.name, lesson %>
     </span>
 
     <% if current_user&.admin? %>

@@ -8,4 +8,8 @@ class Course < ApplicationRecord
   def enrolling? user
     users.include? user
   end
+
+  def add_lession lession
+    lessions << lession
+  end
 end

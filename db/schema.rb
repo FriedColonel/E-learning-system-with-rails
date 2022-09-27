@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_28_013430) do
+ActiveRecord::Schema.define(version: 2022_09_29_023440) do
 
   create_table "courses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -53,7 +53,18 @@ ActiveRecord::Schema.define(version: 2022_09_28_013430) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "words", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "origin", null: false
+    t.string "hiragana", null: false
+    t.text "meaning", null: false
+    t.bigint "lesson_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lesson_id"], name: "index_words_on_lesson_id"
+  end
+
   add_foreign_key "enrolls", "courses"
   add_foreign_key "enrolls", "users"
   add_foreign_key "lessons", "courses"
+  add_foreign_key "words", "lessons"
 end
