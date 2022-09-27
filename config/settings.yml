@@ -1,0 +1,7 @@
+validate:
+  user:
+    name:
+      max_length: 256
+    username:
+      max_length: 256
+      regex: !ruby/regexp /\A\w+\z/i

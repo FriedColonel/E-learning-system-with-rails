@@ -1,0 +1,147 @@
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+  <!-- Navbar Brand-->
+  <a class="navbar-brand ps-3" href="<%= root_path %>">Amazing Nihongo</a>
+  <!-- Sidebar Toggle-->
+  <button
+    class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
+    id="sidebarToggle"
+    href="#!"
+  >
+    <i class="fas fa-bars"></i>
+  </button>
+  <!-- Navbar Search-->
+  <form
+    class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"
+  >
+    <div class="input-group">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Search for..."
+        aria-label="Search for..."
+        aria-describedby="btnNavbarSearch"
+      />
+      <button class="btn btn-primary" id="btnNavbarSearch" type="button">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  </form>
+  <!-- Navbar-->
+  <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+		<% if user_signed_in? %>
+			<li class="nav-item dropdown">
+				<a
+					class="nav-link dropdown-toggle"
+					id="navbarDropdown"
+					href="#"
+					role="button"
+					data-bs-toggle="dropdown"
+					aria-expanded="false"
+					><i class="fas fa-user fa-fw"></i
+				></a>
+					<ul
+						class="dropdown-menu dropdown-menu-end"
+						aria-labelledby="navbarDropdown"
+					>
+						<li><a class="dropdown-item" href="<%= edit_user_registration_path %>">Edit profile</a></li>
+						<li><hr class="dropdown-divider" /></li>
+						<li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %></li>
+					</ul>
+			</li>
+		<% else %>
+			<li class="nav-item">
+				<a class="nav-link" href="<%= new_user_session_path %>">Sign in</a>
+			</li>
+		<% end %>
+  </ul>
+</nav>
+<div id="layoutSidenav">
+  <div id="layoutSidenav_nav">
+    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+      <div class="sb-sidenav-menu">
+        <div class="nav">
+          <div class="sb-sidenav-menu-heading">Courses</div>
+          <% if user_signed_in? %>
+            <a class="nav-link" href="#">
+              <div class="sb-nav-link-icon">
+                <i class="fas fa-tachometer-alt"></i>
+              </div>
+              Enrolled courses
+            </a>
+          <% end %>
+          <div class="sb-sidenav-menu-heading">Interface</div>
+          <% if user_signed_in? %>
+            <a class="nav-link" href="<%= users_path %>">
+              <div class="sb-nav-link-icon">
+                <i class="fas fa-tachometer-alt"></i>
+              </div>
+              Users
+            </a>
+          <% end %>
+          <a
+            class="nav-link collapsed"
+            href="#"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseLayouts"
+            aria-expanded="false"
+            aria-controls="collapseLayouts"
+          >
+            <div class="sb-nav-link-icon">
+              <i class="fas fa-columns"></i>
+            </div>
+            User history
+            <div class="sb-sidenav-collapse-arrow">
+              <i class="fas fa-angle-down"></i>
+            </div>
+          </a>
+          <div
+            class="collapse"
+            id="collapseLayouts"
+            aria-labelledby="headingOne"
+            data-bs-parent="#sidenavAccordion"
+          >
+            <nav class="sb-sidenav-menu-nested nav">
+              <a class="nav-link" href="#"
+                >Learned words</a
+              >
+              <a class="nav-link" href="#"
+                >Finished tests</a
+              >
+            </nav>
+          </div>
+          <!-- <div class="sb-sidenav-menu-heading">Addons</div>
+          <a class="nav-link" href="charts.html">
+            <div class="sb-nav-link-icon">
+              <i class="fas fa-chart-area"></i>
+            </div>
+            Charts
+          </a>
+          <a class="nav-link" href="tables.html">
+            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+            Tables
+          </a> -->
+        </div>
+      </div>
+      <% if user_signed_in? %>
+        <div class="sb-sidenav-footer">
+          <div class="small">Logged in as:</div>
+          <%= current_user.username %>
+        </div>
+      <% end %>
+    </nav>
+  </div>
+  <div id="layoutSidenav_content">
+    <main>
+			<div class="container-fluid px-4">
+				<%= yield %>
+			</div>
+    </main>
+    <footer class="py-4 bg-light mt-auto">
+      <div class="container-fluid px-4">
+        <div class="d-flex align-items-center justify-content-between small">
+          <div class="text-muted">Copyright &copy; Amazing Nihongo 2022</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+</div>
