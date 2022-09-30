@@ -1,0 +1,10 @@
+<% if @course.enrolling?(current_user) %>
+  <button type="button" class="btn btn-primary mb-3" disabled>Enrolled</button>
+<% elsif current_user.admin %>
+  <%= link_to "Update course", edit_course_path(@course), class: "btn btn-primary" %>
+<% else %>
+  <%= form_for(current_user.enrolls.build, remote: true) do |f| %>
+    <%= hidden_field_tag :course_id, @course.id %>
+    <%= f.submit "Enroll", class: "btn btn-primary mb-3" %>
+  <% end %>
+<% end %>

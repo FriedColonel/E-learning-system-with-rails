@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :config_devise_params, if: :devise_controller?
+  include Pagy::Backend
 
   private
   def config_devise_params

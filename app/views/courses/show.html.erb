@@ -1,0 +1,59 @@
+<section style="background: url(https://elearningindustry.com/wp-content/uploads/2021/02/understanding-technology-terms-used-in-education.png) top left / cover no-repeat; min-height: 35vh; position: relative;" class="img-fluid">
+  <div class="container">
+    <p class="display-1 fw-bold pt-4"><%= @course.name %></p>
+    <p class="fs-4 pt-2"><%= @course.description %></p>
+    <div class="d-flex">
+      <div id="enroll_form" class="align-self-center">
+        <%= render 'enroll' if user_signed_in? %>
+      </div>
+      <div class="align-self-center ms-3">
+        <span><i class="fa fa-user" aria-hidden="true"></i></span>
+        <span id="enrolling"><%=@course.users.count%></span>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <p class="fs-3 fw-bold">Lessons list</p>
+  <div class="card" style="width: 100%">
+  <div class="card-header">
+    <%= @course.name %>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <div class="d-flex justify-content-between">
+        <span class="mr-3 fw-bold align-self-center">First lesson
+        </span>
+        <% if user_signed_in? && @course.enrolling?(current_user) %>
+          <%= link_to "Study", "#", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="d-flex justify-content-between">
+        <span class="mr-3 fw-bold align-self-center">Second lesson
+        </span>
+        <% if user_signed_in? && @course.enrolling?(current_user) %>
+          <%= link_to "Study", "#", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="d-flex justify-content-between">
+        <span class="mr-3 fw-bold align-self-center">Third lesson</span>
+        <% if user_signed_in? && @course.enrolling?(current_user) %>
+          <%= link_to "Study", "#", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+    </li>
+  </ul>
+  <div class="card mt-5 mb-3" style="width: 100%;">
+  <div class="card-body">
+    <h5 class="card-title">Final test</h5>
+    <% if user_signed_in? && @course.enrolling?(current_user) %>
+      <%= link_to "Take test", "#", class:"btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+</div>
+</section>

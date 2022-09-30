@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def index
     if (user_signed_in?)
-      @users = User.all
+      @pagy, @users = pagy(User.all, items: 10)
     else
       flash[:danger] = "Please login first!!"
       redirect_to root_path
@@ -36,4 +36,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def courses
+    @title = "Enrolled courses"
+    @courses = current_user.courses.all
+    render :courses
+  end
 end

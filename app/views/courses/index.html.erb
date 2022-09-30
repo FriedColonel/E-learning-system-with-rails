@@ -1,0 +1,12 @@
+<div class="container text-center mt-5">
+  <div class="d-flex justify-content-between">
+    <div class="mb-5">
+      <%= render 'searchform' %>
+    </div>
+    <%= sort_link(@q, :name, 'Sort by name course', default_order: :asc) %>
+  </div>
+  <div class="row gy-5" id="course-list">
+    <%= render @courses %>
+  </div>
+  <%== pagy_bootstrap_nav(@pagy) %>
+</div>

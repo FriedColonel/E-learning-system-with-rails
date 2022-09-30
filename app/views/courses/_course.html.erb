@@ -1,0 +1,14 @@
+<div class="card m-3 col-6" id="course-<%= course.id %>" style="width: 18rem">
+  <img src="https://elearningindustry.com/wp-content/uploads/2021/02/understanding-technology-terms-used-in-education.png" alt="..."  style="object-fit: cover;">
+  <div class="card-body">
+    <h5 class="card-title"><%= course.name %></h5>
+    <p class="card-text"><%= course.description %></p>
+    <div class="d-flex justify-content-center">
+      <% if current_user&.admin? %>
+        <%= button_to "Delete", course, method: :delete, data: {confirm: "Are you sure to delete this course?"}, remote: true, class: "btn btn-danger me-2"%>
+      <% end %>
+      <%= link_to "Details", course, class: "btn btn-primary" %>
+    </div>
+
+  </div>
+</div>
