@@ -12,6 +12,7 @@ class WordsController < ApplicationController
     @word = Word.find_by id: params[:id]
     @words = Word.where lesson_id: @word.lesson_id
     @index = @words.find_index @word
+    @examples = @word.examples
   end
 
   def edit

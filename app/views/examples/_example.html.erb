@@ -1,0 +1,24 @@
+<li id="example-<%= example.id %>">
+  <p class="reibun-ja"><%= example.sentence %></p>
+  <p class="reibun-hiragana"><%= example.hiragana %></p>
+  <p><%= example.meaning %></p>
+  <% if current_user&.admin? %>
+    <%= link_to example, method: :delete, data: {confirm: "Are you sure!"},
+                              class: "delete-example btn btn-danger rounded-0", remote: true do %>
+      <i class="fa fa-trash"></i>
+    <% end %>
+    <div class="update-example-form-<%= example.id %>" style="display: none;">
+      <%= render "examples/editform", object: example %>
+    </div>
+    <button id="update-example-<%= example.id %>" class="update-example btn btn-primary rounded-0">
+      <i class="fa fa-wrench"></i>
+    </button>
+    <script charset="utf-8">
+      $("#update-example-<%= escape_javascript example.id %>").on('click', () => {
+        $(".update-example-form-<%= escape_javascript example.id %>").toggle('slide', () => {
+          document.getElementById("example-<%= escape_javascript example.id %>").scrollIntoView()
+        })
+      })
+    </script>
+  <% end %>
+</li>
