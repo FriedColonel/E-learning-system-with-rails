@@ -1,0 +1,15 @@
+<li id="lesson-<%= lesson.id %>" class="list-group-item">
+  <div class="d-flex justify-content-between">
+    <span class="mr-3 fw-bold align-self-center"><%= lesson.name %>
+    </span>
+
+    <% if current_user&.admin? %>
+      <%= button_to "Delete", lesson, method: :delete, remote: true, data: {course_id: @course.id}, class: "btn btn-danger" %>
+    <% else %>
+      <% if user_signed_in? && @course.enrolling?(current_user) %>
+        <%= link_to "Study", "#", class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
+
+  </div>
+</li>

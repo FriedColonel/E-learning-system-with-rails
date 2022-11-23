@@ -1,0 +1,7 @@
+<%= form_for @lesson do |f| %>
+  <%= hidden_field_tag :course_id, @course.id %>
+  <%= f.label :name %>
+  <%= f.text_field :name, autofocus: true, class: "form-control",
+                                           placeholder: "Enter the name of the lesson" %>
+  <%= f.submit "Create" %>
+<% end %>

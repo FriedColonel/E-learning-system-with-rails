@@ -1,0 +1,6 @@
+<% if @lesson.errors.any? %>
+  $("#error_explanation").replaceWith("<%= escape_javascript render("shared/error_messages", object: @lesson) %>")
+<% else %>
+  $("#error_explanation").html("")
+  $("#lessons-list").append('<%= escape_javascript render(@lesson) %>')
+<% end %>

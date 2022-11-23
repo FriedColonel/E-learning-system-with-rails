@@ -49,7 +49,7 @@ enrolling = courses[1..3]
 
 enrolling.each{|enrolled| user.enroll(enrolled)}
 
-20.times do |n|
+5.times do |n|
   User.create!({
   name: "test user #{n+2}",
   username: "testuser#{n+2}",
@@ -57,4 +57,11 @@ enrolling.each{|enrolled| user.enroll(enrolled)}
   password: "foobar",
   admin: 0
 })
+end
+
+course = Course.find_by id: 6
+3.times do |n|
+  course.lessons.create!({
+    name: "Lesson number #{n}"
+  })
 end
