@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       get :lesson
     end
   end
-  resources :lessons, only: [:create, :destroy]
+  resources :lessons, only: [:create, :destroy, :show]
+  resources :words
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
