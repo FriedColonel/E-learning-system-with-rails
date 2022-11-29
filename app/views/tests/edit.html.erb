@@ -1,0 +1,17 @@
+<h1>Update test</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for @test do |f| %>
+
+      <%= f.label :name, "Name" %>
+      <%= f.text_field :name, class: "form-control" %>
+      <%= f.label :total_questions, "Total questions" %>
+      <%= f.text_field :total_questions, class: "form-control" %>
+      <%= f.label :time_limit, "Time limit" %>
+      <%= f.text_field :time_limit, class: "form-control", value:@test.time_limit.strftime("%H:%M") %>
+      <%= f.label :min_correct_ans, "Minium correct answers" %>
+      <%= f.text_field :min_correct_ans, class: "form-control" %>
+      <%= f.submit "Save change", class: "btn btn-primary mt-2" %>
+    <% end %>
+  </div>
+</div>

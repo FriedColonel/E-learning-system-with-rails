@@ -1,0 +1,13 @@
+<div class="container mt-5">
+  <div class="card text-center">
+    <h5 class="card-header">
+      <%= @test.name %>
+    </h5>
+    <div class="card-body">
+      <p class="card-text">Total question: <%= @test.total_questions %></p>
+      <p class="card-text">Time limt: <%= @test.time_limit.strftime("%H:%M") %></p>
+      <p class="card-text">Minium correct answers: <%= @test.min_correct_ans %></p>
+      <a href="#" class="btn btn-primary">Go test</a>
+    </div>
+  </div>
+</div>
